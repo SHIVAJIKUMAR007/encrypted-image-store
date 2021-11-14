@@ -1,0 +1,64 @@
+* {
+  font-family: "Comfortaa", cursive;
+  /* font-family: 'Style Script', cursive; */
+}
+
+.App {
+  text-align: center;
+  background: #000;
+}
+.border-round {
+  border-radius: 0px 0px 20px 20px;
+}
+
+.border-round1 {
+  border-radius: 20px 20px 0px 0px;
+}
+.border-round2 {
+  border-radius: 20px;
+}
+
+.Homepage-Container {
+  border: 1px;
+  border-radius: 5px;
+  margin-top: 2%;
+  /* background: rgb(5, 213, 5); */
+  justify-content: center;
+  margin-bottom: 5%;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 20px 50px;
+}
+
+.inputcss {
+  margin-top: 8%;
+}
+
+.inputBox {
+  background: none;
+  border: none;
+  padding: 12px 15px;
+  margin-top: 10%;
+  margin: 8px 0;
+  width: 100%;
+  height: 70%;
+  border-bottom: 1px solid white;
+  text-decoration: rgb(152, 76, 76);
+}
+
+.Logbutton {
+  margin-top: 10%;
+  background: green;
+
+  border: 2px;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding: 8px 20px 8px 20px;
+
+  align-self: center;
+
+  border: 2px;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 20px 50px;
+}
