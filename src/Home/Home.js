@@ -20,19 +20,23 @@ const Home = () => {
 
   const getImages = async (userId, pageNumber, numEachPage) => {
     if (!userId) return;
-    let data = await axios.get(
-      `uploads/all_media/${userId}/${pageNumber}/${numEachPage}`
-    );
-    data = await data.data;
-    console.log(data);
-    if (data.status == 1) {
-      if (data.data.length == 0 && pageNumber != 0) {
-        setpageNum(pageNumber - 1);
-        alert("No more data found.");
-        return;
-      }
-      setimages(data.data);
-    } else alert(data.msg);
+    try {
+      let data = await axios.get(
+        `uploads/all_media/${userId}/${pageNumber}/${numEachPage}`
+      );
+      data = await data.data;
+      console.log(data);
+      if (data.status == 1) {
+        if (data.data.length == 0 && pageNumber != 0) {
+          setpageNum(pageNumber - 1);
+          alert("No more data found.");
+          return;
+        }
+        setimages(data.data);
+      } else alert(data.msg);
+    } catch (error) {
+      alert(error);
+    }
   };
   useEffect(() => {
     const pk = window.localStorage.getItem("privateKey");
@@ -68,7 +72,10 @@ const Home = () => {
           <div className="p-0 bd-highlight bg-light h-50 ">
             <h5 className="card-title mt-3 ml-4">Uploaded Items</h5>
 
-            <div id="allMedia"></div>
+            <div
+              id="allMedia"
+              className="d-flex flex-column align-items-center"
+            ></div>
 
             <div className="d-flex justify-content-center">
               {pageNum != 1 ? (

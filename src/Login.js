@@ -63,25 +63,29 @@ const Login = () => {
       .createHash("sha256")
       .update(user?.password)
       .digest("hex");
-    let login = await axios.post("api/login", {
-      username: user?.username,
-      password: encPass,
-    });
+    try {
+      let login = await axios.post("api/login", {
+        username: user?.username,
+        password: encPass,
+      });
 
-    login = await login.data;
-    console.log(login);
+      login = await login.data;
+      console.log(login);
 
-    if (login?.status == 1) {
-      console.log(login, "djfjskdjf");
+      if (login?.status == 1) {
+        console.log(login, "djfjskdjf");
+
+        alert(login?.msg);
+        window.localStorage.setItem("privateKey", priv_key);
+        window.localStorage.setItem("user", JSON.stringify(login?.data));
+        window.location.replace("/");
+        return;
+      }
 
       alert(login?.msg);
-      window.localStorage.setItem("privateKey", priv_key);
-      window.localStorage.setItem("user", JSON.stringify(login?.data));
-      window.location.replace("/");
-      return;
+    } catch (error) {
+      alert(error);
     }
-
-    alert(login?.msg);
   };
 
   return (
@@ -148,9 +152,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// Upload the private key here
-//               <input className=""  type="file"  name="file"
-//                     placeholder=""
-//                     onChange= {, (e)=>{ e.preventDefault(); setfile(e.target.files[0])}}
-//                     />

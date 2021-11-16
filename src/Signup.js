@@ -64,21 +64,25 @@ const Signup = () => {
       .createHash("sha256")
       .update(user?.password)
       .digest("hex");
-    let signup = await axios.post("api/signup", {
-      username: user?.name,
-      password: encPass,
-    });
+    try {
+      let signup = await axios.post("api/signup", {
+        username: user?.name,
+        password: encPass,
+      });
 
-    signup = await signup.data;
+      signup = await signup.data;
 
-    if (signup?.status == 1) {
+      if (signup?.status == 1) {
+        alert(signup?.msg);
+        downloadTxtFile();
+        history.push("/login");
+        return;
+      }
+
       alert(signup?.msg);
-      downloadTxtFile();
-      history.push("/login");
-      return;
+    } catch (error) {
+      alert(error);
     }
-
-    alert(signup?.msg);
   };
   return (
     <>
